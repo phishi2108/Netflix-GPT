@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 
 const Login = () => {
+	const [isSignInFrom, setIsSignInFrom] = useState(true);
+
+	const toggleSignInForm = () => {
+		setIsSignInFrom(!isSignInFrom);
+	};
+
 	return (
 		<div className="relative h-screen w-full">
 			{/* Header */}
@@ -21,21 +27,37 @@ const Login = () => {
 
 			{/* Form */}
 			<form className="absolute top-[25%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-60 text-white p-10 rounded-md z-20 w-96">
-				<h2 className="text-2xl font-bold mb-6 text-center">Sign In</h2>
+				<h2 className="text-2xl font-bold mb-6 text-center">
+					{isSignInFrom ? "Sign In" : "Sign Up"}
+				</h2>
 				<input
 					type="text"
 					placeholder="Email Address"
 					className="p-3 my-2 w-full rounded bg-gray-800 bg-opacity-50 focus:outline-none"
 				/>
+				{!isSignInFrom && (
+					<input
+						type="text"
+						placeholder="Full Name"
+						className="p-3 my-2 w-full rounded bg-gray-800 bg-opacity-50 focus:outline-none"
+					/>
+				)}
 				<input
 					type="password"
 					placeholder="Password"
 					className="p-3 my-2 w-full rounded bg-gray-800 bg-opacity-50 focus:outline-none"
 				/>
 				<button className="w-full bg-red-600 p-3 mt-4 rounded hover:bg-red-700 transition">
-					Sign In
+					{isSignInFrom ? "Sign In" : "Sign Up"}
 				</button>
-				<p className="w-full p-3 my-2">New to Netflix? Sign up now</p>
+				<p
+					className="w-full py-3 my-2 cursor-pointer"
+					onClick={toggleSignInForm}
+				>
+					{isSignInFrom
+						? "New to Netflix? Sign up now"
+						: "Already Registered? Sign In now"}
+				</p>
 			</form>
 		</div>
 	);
