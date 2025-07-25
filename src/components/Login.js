@@ -1,12 +1,27 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "./Header";
+import { checkValidateData } from "../utils/validate";
 
 const Login = () => {
 	const [isSignInFrom, setIsSignInFrom] = useState(true);
+	const [errorMessage, setErrorMessage] = useState(null);
+
+	const name = useRef(null);
+	const email = useRef(null);
+	const password = useRef(null);
 
 	const toggleSignInForm = () => {
 		setIsSignInFrom(!isSignInFrom);
 	};
+
+	const handleButtonClick = () => {
+		//Validate the Form Data
+		const message = checkValidateData(email.current.value, password.current.value);
+		setErrorMessage(message);
+	};
+
+	//Now i can proceed with sign in / sign up.
+
 
 	return (
 		<div className="relative h-screen w-full">
@@ -26,28 +41,35 @@ const Login = () => {
 			</div>
 
 			{/* Form */}
-			<form className="absolute top-[25%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-60 text-white p-10 rounded-md z-20 w-96">
+			<form onSubmit={(e) => {e.preventDefault()}} className="absolute top-[25%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-60 text-white p-10 rounded-md z-20 w-96">
 				<h2 className="text-2xl font-bold mb-6 text-center">
 					{isSignInFrom ? "Sign In" : "Sign Up"}
 				</h2>
 				<input
+					ref={email}
 					type="text"
 					placeholder="Email Address"
 					className="p-3 my-2 w-full rounded bg-gray-800 bg-opacity-50 focus:outline-none"
 				/>
 				{!isSignInFrom && (
 					<input
+						ref={name}
 						type="text"
 						placeholder="Full Name"
 						className="p-3 my-2 w-full rounded bg-gray-800 bg-opacity-50 focus:outline-none"
 					/>
 				)}
 				<input
+					ref={password}
 					type="password"
 					placeholder="Password"
 					className="p-3 my-2 w-full rounded bg-gray-800 bg-opacity-50 focus:outline-none"
 				/>
-				<button className="w-full bg-red-600 p-3 mt-4 rounded hover:bg-red-700 transition">
+				<p className=" text-red-500 font-bold text-lg py-2 ">{errorMessage}</p>
+				<button
+					className="w-full bg-red-600 p-3 mt-4 rounded hover:bg-red-700 transition"
+					onClick={handleButtonClick}
+				>
 					{isSignInFrom ? "Sign In" : "Sign Up"}
 				</button>
 				<p
