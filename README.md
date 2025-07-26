@@ -22,3 +22,7 @@
 - Netflix GPT
   - Search Bar
   - Movie Suggestions
+
+#sample login pass
+  - example@example.com
+  - Example@123

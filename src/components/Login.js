@@ -1,7 +1,11 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidateData } from "../utils/validate";
-
+import {
+	createUserWithEmailAndPassword,
+	signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
 const Login = () => {
 	const [isSignInFrom, setIsSignInFrom] = useState(true);
 	const [errorMessage, setErrorMessage] = useState(null);
@@ -16,12 +20,53 @@ const Login = () => {
 
 	const handleButtonClick = () => {
 		//Validate the Form Data
-		const message = checkValidateData(email.current.value, password.current.value);
+		const message = checkValidateData(
+			email.current.value,
+			password.current.value
+		);
 		setErrorMessage(message);
+
+		if (message) return;
+
+		//sigin or signup logic
+		if (isSignInFrom) {
+			//sign in logic
+			signInWithEmailAndPassword(
+				auth,
+				email.current.value,
+				password.current.value
+			)
+				.then((userCredential) => {
+					// Signed in
+					const user = userCredential.user;
+					console.log(user);
+				})
+				.catch((error) => {
+					const errorCode = error.code;
+					const errorMessage = error.message;
+					setErrorMessage(errorCode + "-" + errorMessage);
+				});
+		} else {
+			//sign up logic
+			createUserWithEmailAndPassword(
+				auth,
+				email.current.value,
+				password.current.value
+			)
+				.then((userCredential) => {
+					// Signed up
+					const user = userCredential.user;
+					console.log(user);
+					// ...
+				})
+				.catch((error) => {
+					const errorCode = error.code;
+					const errorMessage = error.message;
+					setErrorMessage(errorCode + "-" + errorMessage);
+					// ..
+				});
+		}
 	};
-
-	//Now i can proceed with sign in / sign up.
-
 
 	return (
 		<div className="relative h-screen w-full">
@@ -41,7 +86,12 @@ const Login = () => {
 			</div>
 
 			{/* Form */}
-			<form onSubmit={(e) => {e.preventDefault()}} className="absolute top-[25%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-60 text-white p-10 rounded-md z-20 w-96">
+			<form
+				onSubmit={(e) => {
+					e.preventDefault();
+				}}
+				className="absolute top-[25%] left-1/2 transform -translate-x-1/2 bg-black bg-opacity-60 text-white p-10 rounded-md z-20 w-96"
+			>
 				<h2 className="text-2xl font-bold mb-6 text-center">
 					{isSignInFrom ? "Sign In" : "Sign Up"}
 				</h2>
