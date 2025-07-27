@@ -78,7 +78,6 @@ const Login = () => {
 									photoURL: photoURL,
 								})
 							);
-							navigate("/browse");
 						})
 						.catch((error) => {
 							setErrorMessage(error.message);
