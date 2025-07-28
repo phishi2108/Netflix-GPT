@@ -45,8 +45,6 @@ const Login = () => {
 				.then((userCredential) => {
 					// Signed in
 					const user = userCredential.user;
-					console.log(user);
-					navigate("/browse");
 				})
 				.catch((error) => {
 					const errorCode = error.code;
@@ -87,7 +85,6 @@ const Login = () => {
 					const errorCode = error.code;
 					const errorMessage = error.message;
 					setErrorMessage(errorCode + "-" + errorMessage);
-					// ..
 				});
 		}
 	};
