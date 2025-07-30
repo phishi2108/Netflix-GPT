@@ -43,7 +43,7 @@ const Header = () => {
 	}, []);
 
 	return (
-		<div className="flex justify-between items-center px-6 py-4 w-full absolute z-50">
+		<div className="flex justify-between items-center px-6  w-full absolute z-50">
 			<div>
 				<img className="w-36 md:w-44" src={netflix_logo} alt="logo_netflix" />
 			</div>
