@@ -9,7 +9,7 @@ const MainContainer = () => {
 	const { original_title, overview, id } = mainMovie;
 
 	return (
-		<div className="bg-red-100 w-full">
+		<div className="bg-red-100 w-full  overflow-x-hidden overflow-y-hidden aspect-video">
 			<VideoTitle  title={original_title} overview={overview} />
 			<VideoBackground TrailerId ={id}/>
 		</div>

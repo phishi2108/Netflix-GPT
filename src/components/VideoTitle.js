@@ -1,7 +1,7 @@
 const VideoTitle = ({ title, overview }) => {
 	return (
-		<div className="py-36 px-20 pt-[28%] absolute bg-opacity-40 bg-black text-white w-full aspect-video no-scrollbar overflow-x-hidden">
-			<h1 className="text-6xl font-bold drop-shadow-sm">{title}</h1>
+		<div className="py-36 px-20 pt-[28%] z-20 absolute text-white w-full aspect-video no-scrollbar overflow-x-hidden">
+			<h1 className="text-6xl font-bold drop-shadow-lg">{title}</h1>
 			<p className="py-6  text-lg w-3/4">{overview}</p>
 			<div className="flex gap-4">
 				<button className="bg-black text-white py-2 px-6 rounded-md font-semibold text-lg hover:bg-opacity-70 transition">
