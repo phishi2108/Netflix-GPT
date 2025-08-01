@@ -10,6 +10,7 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { netflix_bg_url } from "../utils/constants";
 const Login = () => {
 	const [isSignInFrom, setIsSignInFrom] = useState(true);
 	const [errorMessage, setErrorMessage] = useState(null);
@@ -99,7 +100,7 @@ const Login = () => {
 			{/* Background Image with Black Overlay */}
 			<div className="relative h-full">
 				<img
-					src="https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/IN-en-20250721-TRIFECTA-perspective_cadc8408-df6e-4313-a05d-daa9dcac139f_large.jpg"
+					src={netflix_bg_url}
 					alt="netflix_bg_login"
 					className="w-full h-full object-cover"
 				/>
