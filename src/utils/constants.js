@@ -22,3 +22,5 @@ export const supported_lang = [
 	{ identifier: "hindi", name: "हिन्दी" },
 	{ identifier: "spanish", name: "Español" },
 ];
+
+export const gemini_API_key = "AIzaSyBCsB1rqsRd57GsJT2axJSoTEjH9V8VXpk";
