@@ -17,7 +17,10 @@ const GptMovieSuggestions = () => {
 				🎬 Recommended Movies
 			</h2>
 
-			<MovieLists title="Top Picks for You" movies={topMovies} />
+			{/* Horizontal scrollable list */}
+			<div className="overflow-x-auto scrollbar-hide">
+				<MovieLists title="Top Picks for You" movies={topMovies} />
+			</div>
 		</div>
 	);
 };
